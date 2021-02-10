@@ -7,7 +7,7 @@ void ClearScreen(){
       printf( "\n\n\n\n\n\n\n\n\n\n" );
     }
 
-int Register_login(){
+string Register_login(){
 	cout<<"=>Press 1 for Signin\n=>Press 2 for Signup \nPress q to quit\n";
 	char key;
 	cin>>key;
@@ -34,13 +34,12 @@ int Register_login(){
 			}
 			if(flag==1){
 				ClearScreen();
-				cout<<"\t\t\t\t\tsuccesfully logged\n";
-				return flag;
+				cout<<"\t\t\tsuccesfully logged as "<<user_id<<"\n";
+				return user_id;
 			}
 			else{
-				cout<<"incorrect user_id and pass\n";
-				Register_login();
-				break;
+				cout<<"\t\t\tincorrect user_id and pass\n\n";
+				return "zzzzzzzzzzzzzzzzzzzzzzzzz";
 			}
 		}
 		// while()
@@ -51,9 +50,26 @@ int Register_login(){
 			cout<<"Enter Password\n";
 			string pass;
 			cin>>pass;
-			user<<user_id<<" "<<pass<<endl;
-			Register_login();
-			break;
+			string _userid, _pass;
+			string line=" ";
+			int flag = 0;
+			while(getline(user,line)){
+				stringstream iss(line);
+				iss >> _userid >> _pass;
+				if(_userid==user_id && _pass==pass){
+					flag=1;
+					break;
+				}
+			}
+			if(flag!=1){
+				cout<<"\t\t\tsuccesfully Registered as " <<user_id<<"\n";
+				user<<user_id<<" "<<pass<<endl;
+				return user_id;
+			}
+			else{
+				cout<<"\t User already exist\n";
+				return "zzzzzzzzzzzzzzzzzzzzzzzzz";
+			}
 		}
 		case 'q':{
 			exit(0);

@@ -9,7 +9,7 @@ using namespace cv;
 
 //only green coloured video recording with gaussian blur
 
-int recordgreen() {
+int recordgreen(string login) {
 	Mat frame,R;
     VideoCapture vcap(0);
     if (!vcap.isOpened()) {
@@ -27,6 +27,7 @@ int recordgreen() {
     getline(fin,line);
     bool isColor = (frame.type() == CV_8UC3);
     string path = "./greenrecord/";
+    path.append(login);
     path.append(line);
     string format = ".mp4";
     path.append(format);

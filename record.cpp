@@ -7,7 +7,7 @@
 using namespace std;
 using namespace cv;
 
-int record() {
+int record(string login) {
 	Mat frame,R;
     VideoCapture vcap(0);
     if (!vcap.isOpened()) {
@@ -25,6 +25,7 @@ int record() {
 	getline(fin,line);
     bool isColor = (frame.type() == CV_8UC3);
     string path = "./recorded/";
+    path.append(login);
     path.append(line);
     string format = ".mp4";
     path.append(format);
